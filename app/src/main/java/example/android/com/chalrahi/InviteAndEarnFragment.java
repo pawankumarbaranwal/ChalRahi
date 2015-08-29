@@ -33,11 +33,9 @@ public class InviteAndEarnFragment extends Fragment implements View.OnClickListe
     }
 
     private void setData() {
-        StringBuilder message = new StringBuilder("Help your Friends \n");
-        message.append("Invie your friend to download the app \n");
-        message.append("You and your friend will get Rs.100 each\n");
-        message.append("once your friend completes first auto ride\n");
-        message.append("Your unique code is  \n");
+        String message = new String("Invite your friend to download the app " +
+                "You and your friend will get Rs.100 each once " +
+                "your friend completes first auto ride. Your unique code is ");
         inviteMessage.setText(message.toString());
     }
 
