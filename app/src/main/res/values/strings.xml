@@ -5,7 +5,7 @@
     <string name="action_settings">Settings</string>
     <string name="drawer_open">Open Navigation Drawer</string>
     <string name="drawer_close">Close Navigation Drawer</string>
-
+    <string name="invite_and_earn">Invite And Earn</string>
 
 
     <string-array name="fragment_drawer_items">
