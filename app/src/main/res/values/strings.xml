@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Chal Rahi</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="drawer_open">Open Navigation Drawer</string>
+    <string name="drawer_close">Close Navigation Drawer</string>
+
+
+
+    <string-array name="fragment_drawer_items">
+        <item>Invite and Earn</item>
+        <item>Fare Detalis</item>
+        <item>Support</item>
+        <item>About Us</item>
+    </string-array>
+</resources>
