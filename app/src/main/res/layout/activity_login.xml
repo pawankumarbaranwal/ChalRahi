@@ -21,9 +21,10 @@
             android:layout_gravity="center"
             android:layout_marginTop="20dp"
             android:background="@drawable/rounded_corner"
-            android:gravity="center"
+            android:gravity="left|center"
             android:hint="@string/mobile_number"
             android:inputType="number"
+            android:paddingLeft="10dp"
             android:maxLength="10" />
 
         <EditText
@@ -31,8 +32,9 @@
             android:layout_height="40dp"
             android:layout_marginTop="15dp"
             android:background="@drawable/rounded_corner"
-            android:gravity="center"
             android:hint="Password"
+            android:gravity="left|center"
+            android:paddingLeft="10dp"
             android:inputType="textPassword"
             android:maxLength="15" />
 

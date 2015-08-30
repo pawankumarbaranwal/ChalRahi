@@ -92,12 +92,13 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginStart="10dp"
+        android:layout_marginBottom="10dp"
         android:orientation="vertical">
 
 
         <RadioGroup
             android:id="@+id/radioGroup"
-            android:layout_width="fill_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
@@ -118,7 +119,7 @@
                 android:checked="false"
                 android:text="Female"
                 android:layout_marginLeft="20dp"
-                android:textSize="25sp" />
+                android:textSize="20sp" />
 
         </RadioGroup>
 
@@ -139,7 +140,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="@string/sos_message" />
+            android:text="@string/sos_message"
+            android:layout_marginBottom="10dp"/>
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -149,19 +151,18 @@
             <EditText
                 android:id="@+id/etRelativePerson"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:background="@drawable/rounded_corner"
                 android:gravity="left|center"
                 android:hint="@string/name_of_person"
                 android:inputType="text"
-                android:maxLength="10"
                 android:padding="10dp" />
 
             <EditText
                 android:id="@+id/etRelativePersonPhone"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginLeft="10dp"
                 android:background="@drawable/rounded_corner"
@@ -177,7 +178,7 @@
         <Button
             android:id="@+id/btnRegister"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:layout_gravity="bottom"
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"
@@ -203,7 +204,7 @@
         <Button
             android:id="@+id/btnLoginLink"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:layout_gravity="bottom"
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"

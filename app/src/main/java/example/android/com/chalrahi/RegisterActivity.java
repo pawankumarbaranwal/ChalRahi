@@ -1,37 +1,43 @@
 package example.android.com.chalrahi;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
-public class RegisterActivity extends AppCompatActivity {
+public class RegisterActivity extends AppCompatActivity implements View.OnClickListener {
+
+    private Button login;
+    private Button register;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+        initializeView();
+
+    }
+    private void initializeView()
+    {
+        login=(Button)findViewById(R.id.btnLoginLink);
+        register=(Button)findViewById(R.id.btnRegister);
+        login.setOnClickListener(this);
+        register.setOnClickListener(this);
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_register, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+    public void onClick(View v)
+    {
+        Intent intent;
+        if (v==login){
+            intent=new Intent(this,LoginActivity.class);
+            startActivity(intent);
         }
+        else if (v==register){
 
-        return super.onOptionsItemSelected(item);
+        }
     }
 }
