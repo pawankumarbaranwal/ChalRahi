@@ -17,11 +17,16 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-    sourceSets { main { res.srcDirs = ['src/main/res', 'src/main/res/drawable'] } }
+    sourceSets {
+        main { res.srcDirs = ['src/main/res', 'src/main/res/drawable', 'src/main/libs/'] }
+    }
 }
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.android.support:appcompat-v7:22.2.0'
     compile 'com.android.support:cardview-v7:+'
+    // OkHttp
+    compile 'com.squareup.okhttp:okhttp:2.3.0'
+    compile files('src/main/libs/gson-2.2.2.jar')
 }
