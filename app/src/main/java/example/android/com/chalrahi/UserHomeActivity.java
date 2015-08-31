@@ -22,7 +22,7 @@ import android.widget.TextView;
 import java.util.Arrays;
 import java.util.List;
 
-public class MainActivity extends ActionBarActivity implements AdapterView.OnItemClickListener {
+public class UserHomeActivity extends ActionBarActivity implements AdapterView.OnItemClickListener {
 
     private DrawerLayout drawerlayout;
     private ListView listview;
@@ -52,17 +52,12 @@ public class MainActivity extends ActionBarActivity implements AdapterView.OnIte
 
             @Override
             public void onDrawerOpened(View drawerView) {
-//                Toast.makeText(MainActivity.this, "Drawer Opened",
-//                        Toast.LENGTH_SHORT).show();
+
 
             }
 
             @Override
             public void onDrawerClosed(View drawerView) {
-//                Toast.makeText(MainActivity.this, "Drawer Closed",
-//                        Toast.LENGTH_SHORT).show();
-
-
             }
         };
 

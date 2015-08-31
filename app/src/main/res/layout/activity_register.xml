@@ -42,7 +42,7 @@
             android:paddingLeft="10dp" />
 
         <EditText
-            android:id="@+id/etPhone"
+            android:id="@+id/etMoblieNumber"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_gravity="center"
@@ -98,26 +98,27 @@
 
         <RadioGroup
             android:id="@+id/radioGroup"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:weightSum="3">
+
+            <RadioButton
+                android:id="@+id/rbFeMale"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:layout_weight="2"
+                android:text="@string/female"
+                android:textSize="20sp"  />
 
             <RadioButton
                 android:id="@+id/rbMale"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:checked="false"
-                android:layout_weight="2"
-                android:text="Male"
-                android:textSize="25sp" />
-
-            <RadioButton
-                android:id="@+id/rbFemale"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="3"
-                android:checked="false"
-                android:text="Female"
+                android:text="@string/male"
                 android:layout_marginLeft="20dp"
                 android:textSize="20sp" />
 

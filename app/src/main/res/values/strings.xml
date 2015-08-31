@@ -11,7 +11,7 @@
     <string name="dont_have_an_account">Don\'t have an account yet ?</string>
     <string name="title_activity_register">RegisterActivity</string>
     <string name="name">Name</string>
-    <string name="date_of_birth">Date Of Birth</string>
+    <string name="date_of_birth">Date Of Birth (DD/MM/YYYY)</string>
     <string name="password">Password</string>
     <string name="name_of_person">Name of Person</string>
     <string name="contact_number">Contact Number</string>
@@ -19,6 +19,8 @@
     <string name="login">Login</string>
     <string name="sos_details">SOS Details (Optional)</string>
     <string name="sos_message">You can send your location to your SOS contact in case of emergency with a tap of SOS button thrice</string>
+    <string name="female">Female</string>
+    <string name="male">Male</string>
 
 
     <string-array name="fragment_drawer_items">
