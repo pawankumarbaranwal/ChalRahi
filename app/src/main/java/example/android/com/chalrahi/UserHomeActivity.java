@@ -14,7 +14,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -36,7 +35,7 @@ public class UserHomeActivity extends ActionBarActivity implements AdapterView.O
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.user_home);
         drawerlayout = (DrawerLayout)findViewById(R.id.drawerLayout);
         drawerItemList = Arrays.asList(getResources().getStringArray(R.array.fragment_drawer_items));
         listview = (ListView)findViewById(R.id.drawerList);
@@ -53,14 +52,12 @@ public class UserHomeActivity extends ActionBarActivity implements AdapterView.O
             @Override
             public void onDrawerOpened(View drawerView) {
 
-
             }
 
             @Override
             public void onDrawerClosed(View drawerView) {
             }
         };
-
 
         drawerlayout.setDrawerListener(drawerListener);
         getSupportActionBar().setHomeButtonEnabled(true);
@@ -79,20 +76,27 @@ public class UserHomeActivity extends ActionBarActivity implements AdapterView.O
         switch (i)
         {
             case 0 :
+                AutoBookActivity autoBookActivity = new AutoBookActivity();
+                fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.frameLayout,autoBookActivity);
+                fragmentTransaction.commit();
+                break;
+
+            case 1 :
                 InviteAndEarnFragment inviteAndEarnFragment = new InviteAndEarnFragment();
                 fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.replace(R.id.frameLayout,inviteAndEarnFragment);
                 fragmentTransaction.commit();
                 break;
 
-            case 1 :
+            case 2 :
                 FairDetailsFragment fairDetailsFragment= new FairDetailsFragment();
                 fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.replace(R.id.frameLayout,fairDetailsFragment);
                 fragmentTransaction.commit();
                 break;
 
-            case 2:
+            case 3:
                 SupportFragment supportFragment = new SupportFragment();
                 fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.replace(R.id.frameLayout,supportFragment);
@@ -100,7 +104,7 @@ public class UserHomeActivity extends ActionBarActivity implements AdapterView.O
                 break;
 
 
-            case 3 :
+            case 4 :
                 AboutUsFragment aboutUsFragment = new AboutUsFragment();
                 fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.replace(R.id.frameLayout, aboutUsFragment);

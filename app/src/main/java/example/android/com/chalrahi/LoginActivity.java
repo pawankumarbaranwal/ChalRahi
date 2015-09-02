@@ -43,7 +43,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     @Override
     public void onClick(View v)
     {
-        OkHttpHandler handler = new OkHttpHandler();
+        OkHttpHandler handler = new OkHttpHandler(this);
         Intent intent;
         Validator validator =new Validator();
         if (v==login){

@@ -24,9 +24,15 @@
 
 
     <string-array name="fragment_drawer_items">
+        <item>Book an Auto</item>
         <item>Invite and Earn</item>
         <item>Fare Detalis</item>
         <item>Support</item>
         <item>About Us</item>
     </string-array>
+    <string name="title_activity_auto_book">AutoBookActivity</string>
+    <string name="book_an_auto">Tap to \nbook an \nAuto</string>
+    <string name="send_an_alert">SOS \nTap thrice to \nsend an alert \nto your SOS \nContact</string>
+    <string name="click_on_red_box">Click on the Red box,to book an auto. It will take approx. 10-15 minutes for an auto to reach to your current location. We will message you the details about the Auto driver coming to pick you on your registered number</string>
+    <string name="click_on_black_box">In case of emergency, click on the black box thrice, and an SMS with your current location will be sent to your SOS contact</string>
 </resources>

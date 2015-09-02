@@ -5,9 +5,13 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 public class SupportFragment extends Fragment{
 
+
+    private Button bookAnAuto;
+    private Button sendAnAlert;
 
     private View view;
 

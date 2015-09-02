@@ -1,5 +1,7 @@
 package example.android.com.chalrahi;
 
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
 import com.squareup.okhttp.MediaType;
@@ -10,7 +12,13 @@ import com.squareup.okhttp.Response;
 
 
 public class OkHttpHandler extends AsyncTask<Void, Void, String> {
+    private Context context;
+    public OkHttpHandler(Context context) {
+        this.context = context;
+        //spinner = new ProgressDialog(context); // spinner
+    }
 
+    ProgressDialog progressDialog;
     // TODO: replace with your own image url
     private final String REQUEST_URL = "http://app-login.herokuapp.com/index.php";
 
@@ -18,7 +26,11 @@ public class OkHttpHandler extends AsyncTask<Void, Void, String> {
 
     public static final MediaType JSON
             = MediaType.parse("application/x-www-form-urlencoded; charset=utf-8");
-
+    @Override
+    protected void onPreExecute() {
+        super.onPreExecute();
+        progressDialog = ProgressDialog.show(context, "Wait", "Downloading...");
+    }
     @Override
     protected String doInBackground(Void... params) {
 
