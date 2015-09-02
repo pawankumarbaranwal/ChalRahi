@@ -6,16 +6,69 @@
     android:layout_height="match_parent">
 
     <FrameLayout
+        android:id="@+id/frameLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/frameLayout">
+        android:layout_height="match_parent">
 
     </FrameLayout>
-    <ListView
-        android:layout_width="300dp"
+
+    <LinearLayout
+        android:id="@+id/pawan"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/drawerList"
-        android:background="#dedede"
-        android:layout_gravity="left" >
-    </ListView>
+        android:layout_gravity="start"
+        android:orientation="vertical"
+        android:visibility="visible"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_gravity="start"
+            android:background="#dedede"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:clickable="true">
+
+            <ImageView
+                android:id="@+id/ivProfilePic"
+                android:layout_width="0dp"
+                android:layout_height="80dp"
+                android:layout_weight="1"
+                android:paddingLeft="20dp"
+                android:src="@drawable/oval_background_red" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="2"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Pawan Baranwal" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center"
+                    android:text="pawankumarbaranwal@gmail.com" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <ListView
+            android:id="@+id/drawerList"
+            android:layout_width="300dp"
+            android:layout_height="0dp"
+            android:layout_weight="3"
+            android:layout_gravity="left"
+            android:background="#dedede">
+
+        </ListView>
+    </LinearLayout>
 </android.support.v4.widget.DrawerLayout>
