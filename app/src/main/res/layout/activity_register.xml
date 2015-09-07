@@ -76,7 +76,7 @@
             android:background="@drawable/rounded_corner"
             android:gravity="left|center"
             android:hint="@string/password"
-            android:inputType="number"
+            android:inputType="text"
             android:maxLength="10"
             android:paddingLeft="10dp" />
 
@@ -150,7 +150,7 @@
             android:orientation="horizontal">
 
             <EditText
-                android:id="@+id/etRelativePerson"
+                android:id="@+id/etRelativePersonName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -161,7 +161,7 @@
                 android:padding="10dp" />
 
             <EditText
-                android:id="@+id/etRelativePersonPhone"
+                android:id="@+id/etRelativePersonContact"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"

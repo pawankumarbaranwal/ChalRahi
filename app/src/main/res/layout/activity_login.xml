@@ -12,7 +12,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:layout_weight="1"
+        android:layout_weight="2"
         android:orientation="vertical">
 
         <EditText
@@ -25,8 +25,8 @@
             android:gravity="left|center"
             android:hint="@string/mobile_number"
             android:inputType="number"
-            android:paddingLeft="10dp"
-            android:maxLength="10" />
+            android:maxLength="10"
+            android:paddingLeft="10dp" />
 
         <EditText
             android:id="@+id/etPassword"
@@ -34,11 +34,11 @@
             android:layout_height="40dp"
             android:layout_marginTop="15dp"
             android:background="@drawable/rounded_corner"
-            android:hint="Password"
             android:gravity="left|center"
-            android:paddingLeft="10dp"
+            android:hint="Password"
             android:inputType="textPassword"
-            android:maxLength="15" />
+            android:maxLength="15"
+            android:paddingLeft="10dp" />
 
         <Button
             android:id="@+id/btnLoginAsCustomer"
@@ -47,8 +47,8 @@
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginTop="20dp"
-            android:gravity="center"
             android:background="#ED9131"
+            android:gravity="center"
             android:text="Login as customer" />
 
     </LinearLayout>
@@ -58,6 +58,21 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
+        android:orientation="vertical">
+
+        <ProgressBar
+            android:id="@+id/progress"
+            style="?android:attr/progressBarStyleSmall"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:visibility="invisible" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"
         android:orientation="vertical">
 
         <RelativeLayout
@@ -83,8 +98,8 @@
                 android:layout_centerInParent="true"
                 android:layout_gravity="bottom"
                 android:layout_margin="20dp"
-                android:gravity="center"
                 android:background="#ED9131"
+                android:gravity="center"
                 android:text="@string/register" />
         </RelativeLayout>
     </LinearLayout>

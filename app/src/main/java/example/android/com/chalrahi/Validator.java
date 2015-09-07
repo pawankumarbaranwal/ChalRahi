@@ -19,7 +19,7 @@ public class Validator
         }
     }
 
-    public void validateRegistrationDetails(String name, String email, String mobileNumber, String dateOfBirth, String password, String gender) throws Exception {
+    public void validateRegistrationDetails(String name, String email, String mobileNumber, String dateOfBirth, String password) throws Exception {
         if ((name == null) || (name.isEmpty()))
         {
             throw new Exception("Please Enter Name");
@@ -35,9 +35,6 @@ public class Validator
         }else if ((password == null) || (password.isEmpty()))
         {
             throw new Exception("Please enter Password");
-        }else if ((gender == null) || (gender.isEmpty()))
-        {
-           // throw new Exception("Please enter Gender");
         }
     }
 }
