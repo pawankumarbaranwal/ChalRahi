@@ -11,7 +11,6 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.BitmapShader;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
 import android.net.Uri;
 import android.provider.MediaStore;
@@ -19,20 +18,16 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.util.Log;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.io.File;
 import java.util.Arrays;
@@ -87,33 +82,40 @@ public class UserHomeActivity extends ActionBarActivity implements AdapterView.O
 
         fragmentManager = getFragmentManager();
 
-        loadSelection(0);
+        loadSelection(1);
     }
 
     private void loadSelection(int i) {
         switch (i) {
             case 0:
+                ProfileFragment profileFragment= new ProfileFragment();
+                fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.frameLayout, profileFragment);
+                fragmentTransaction.commit();
+                break;
+
+            case 1:
                 AutoBookActivity autoBookActivity = new AutoBookActivity();
                 fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.replace(R.id.frameLayout, autoBookActivity);
                 fragmentTransaction.commit();
                 break;
 
-            case 1:
+            case 2:
                 InviteAndEarnFragment inviteAndEarnFragment = new InviteAndEarnFragment();
                 fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.replace(R.id.frameLayout, inviteAndEarnFragment);
                 fragmentTransaction.commit();
                 break;
 
-            case 2:
+            case 3:
                 FairDetailsFragment fairDetailsFragment = new FairDetailsFragment();
                 fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.replace(R.id.frameLayout, fairDetailsFragment);
                 fragmentTransaction.commit();
                 break;
 
-            case 3:
+            case 4:
                 SupportFragment supportFragment = new SupportFragment();
                 fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.replace(R.id.frameLayout, supportFragment);
@@ -121,7 +123,7 @@ public class UserHomeActivity extends ActionBarActivity implements AdapterView.O
                 break;
 
 
-            case 4:
+            case 5:
                 AboutUsFragment aboutUsFragment = new AboutUsFragment();
                 fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.replace(R.id.frameLayout, aboutUsFragment);
