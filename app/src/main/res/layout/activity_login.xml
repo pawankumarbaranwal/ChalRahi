@@ -67,6 +67,7 @@
             android:layout_height="match_parent"
             android:gravity="center"
             android:indeterminate="true"
+            android:background="#ffff270f"
             android:visibility="invisible" />
     </LinearLayout>
 
