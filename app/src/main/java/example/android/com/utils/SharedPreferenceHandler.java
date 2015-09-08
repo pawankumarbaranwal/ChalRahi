@@ -1,5 +1,3 @@
-package example.android.com.utils;
-
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
@@ -23,14 +21,13 @@ public class SharedPreferenceHandler {
     }
 
     public static String readValue(Context context, String key) {
-        String value = null;
+        String value = "";
         try {
             commonSharedPreference = PreferenceManager.getDefaultSharedPreferences(context);
             value = commonSharedPreference.getString(key, "");
             if (!value.equalsIgnoreCase("")) {
                 Log.d("value:", value);
             }
-
         } catch (Exception e) {
             e.printStackTrace();
         }
