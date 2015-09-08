@@ -63,8 +63,9 @@
                 android:layout_height="match_parent"
                 android:textSize="20sp"
                 android:padding="10dp"
-                android:gravity="center"
-                android:text="@string/click_on_red_box" />
+                android:gravity="center|left"
+                android:text="@string/click_on_red_box"
+                android:id="@+id/" />
             </android.support.v7.widget.CardView>
         </LinearLayout>
 
@@ -82,11 +83,12 @@
                 android:padding="10dp"
                 >
             <TextView
-                android:gravity="center"
+                android:gravity="center|left"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:textSize="20sp"
-                android:text="@string/click_on_black_box" />
+                android:text="@string/click_on_black_box"
+                android:padding="10sp" />
         </android.support.v7.widget.CardView>
         </LinearLayout>
 
