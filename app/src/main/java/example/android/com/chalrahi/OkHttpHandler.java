@@ -3,6 +3,7 @@ package example.android.com.chalrahi;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.view.View;
 import android.widget.ProgressBar;
 
 import com.squareup.okhttp.MediaType;
@@ -70,10 +71,15 @@ public class OkHttpHandler extends AsyncTask<String, Void, String> {
             return null;
         }
     }
-/*
+
     @Override
+    protected void onPreExecute() {
+        super.onPreExecute();
+        //progressBar = new ProgressBar(context, null, android.R.attr.progressBarStyleLarge);
+        progressBar.setVisibility(View.VISIBLE);
+    }
     protected void onPostExecute(String s) {
         super.onPostExecute(s);
         progressBar.setVisibility(View.INVISIBLE);
-    }*/
+    }
 }
