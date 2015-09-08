@@ -1,3 +1,4 @@
+package example.android.com.utils;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
