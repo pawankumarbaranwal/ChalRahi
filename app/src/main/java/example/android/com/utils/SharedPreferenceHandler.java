@@ -34,4 +34,17 @@ public class SharedPreferenceHandler {
         }
         return value;
     }
+
+    public static void deleteValue(Context context) {
+        String value = "";
+        try {
+            commonSharedPreference = PreferenceManager.getDefaultSharedPreferences(context);
+            SharedPreferences.Editor editor = commonSharedPreference.edit();
+            editor.clear();
+            editor.commit();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

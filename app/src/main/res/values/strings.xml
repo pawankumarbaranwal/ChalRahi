@@ -21,9 +21,11 @@
     <string name="sos_message">You can send your location to your SOS contact in case of emergency with a tap of SOS button thrice</string>
     <string name="female">Female</string>
     <string name="male">Male</string>
+    <string name="sign_out">Sign Out</string>
 
 
     <string-array name="fragment_drawer_items">
+        <item>Profile</item>
         <item>Book an Auto</item>
         <item>Invite and Earn</item>
         <item>Fare Detalis</item>

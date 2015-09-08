@@ -63,7 +63,8 @@ public class SplashScreenActivity extends Activity {
                 }
                 finally {
                     Intent i;
-                    if (SharedPreferenceHandler.readValue(context,"LoginObject").isEmpty())
+                    if ((SharedPreferenceHandler.readValue(context,"LoginObject").isEmpty())
+                            &&(SharedPreferenceHandler.readValue(context,"RegisterObject").isEmpty()))
                     {
                          i = new Intent(SplashScreenActivity.this, LoginActivity.class);
                     }else
