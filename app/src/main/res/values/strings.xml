@@ -11,6 +11,7 @@
     <string name="dont_have_an_account">Don\'t have an account yet ?</string>
     <string name="title_activity_register">RegisterActivity</string>
     <string name="name">Name</string>
+    <string name="email">Email</string>
     <string name="date_of_birth">Date Of Birth (YYYY/MM/DD)</string>
     <string name="password">Password</string>
     <string name="name_of_person">Name of Person</string>
@@ -24,6 +25,15 @@
     <string name="sign_out">Sign Out</string>
     <string name="error">Error</string>
     <string name="ok">OK</string>
+    <string name="title_activity_auto_book">AutoBookActivity</string>
+    <string name="book_an_auto">Tap to \nbook an \nAuto</string>
+    <string name="send_an_alert">SOS \nTap thrice to \nsend an alert \nto your SOS \nContact</string>
+    <string name="click_on_red_box">Click on the Red box,to book an auto. It will take approx. 10-15 minutes for an auto to reach to your current location. We will message you the details about the Auto driver coming to pick you on your registered number</string>
+    <string name="click_on_black_box">In case of emergency, click on the black box thrice, and an SMS with your current location will be sent to your SOS contact</string>
+    <string name="change_password">Change Password</string>
+    <string name="profile_date_of_birth">Date Of Birth</string>
+    <string name="name_of_contact_person">Contact Person Name</string>
+    <string name="phone_of_contact_person">Contact Person Phone</string>
 
 
     <string-array name="fragment_drawer_items">
@@ -34,9 +44,4 @@
         <item>Support</item>
         <item>About Us</item>
     </string-array>
-    <string name="title_activity_auto_book">AutoBookActivity</string>
-    <string name="book_an_auto">Tap to \nbook an \nAuto</string>
-    <string name="send_an_alert">SOS \nTap thrice to \nsend an alert \nto your SOS \nContact</string>
-    <string name="click_on_red_box">Click on the Red box,to book an auto. It will take approx. 10-15 minutes for an auto to reach to your current location. We will message you the details about the Auto driver coming to pick you on your registered number</string>
-    <string name="click_on_black_box">In case of emergency, click on the black box thrice, and an SMS with your current location will be sent to your SOS contact</string>
 </resources>

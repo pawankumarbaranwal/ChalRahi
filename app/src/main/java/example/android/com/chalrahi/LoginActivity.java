@@ -65,7 +65,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     loginUser = new Gson().fromJson(response, LoginUser.class);
                     Log.i("ResponseType", loginUser.toString());
                 }
-                SharedPreferenceHandler.writeValue(this, "LoginObject", loginUser.toString());
+                SharedPreferenceHandler.writeValue(this, "LoginObject", response);
                 Log.i("asdfghjkl", SharedPreferenceHandler.readValue(this, "LoginObject"));
 
                 intent = new Intent(this, UserHomeActivity.class);

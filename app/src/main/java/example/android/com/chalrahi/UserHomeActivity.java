@@ -18,6 +18,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -29,9 +30,13 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
+
 import java.io.File;
 import java.util.Arrays;
 import java.util.List;
+
+import example.android.com.utils.SharedPreferenceHandler;
 
 public class UserHomeActivity extends ActionBarActivity implements AdapterView.OnItemClickListener, View.OnClickListener {
 
@@ -45,24 +50,15 @@ public class UserHomeActivity extends ActionBarActivity implements AdapterView.O
     private Context context = this;
     private static final int LOAD_IMAGE_FROM_GALLERY = 1;
     private Intent builderIntent;
-    LinearLayout pawan;
+    private TextView name;
+    private TextView email;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.user_home);
-        drawerlayout = (DrawerLayout) findViewById(R.id.drawerLayout);
-        drawerItemList = Arrays.asList(getResources().getStringArray(R.array.fragment_drawer_items));
-        listview = (ListView) findViewById(R.id.drawerList);
-        profilePic = (ImageView) findViewById(R.id.ivProfilePic);
-        pawan = (LinearLayout) findViewById(R.id.pawan);
-        listview.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
-        AdapterClass adapter = new AdapterClass();
-        listview.setAdapter(adapter);
-
-        listview.setOnItemClickListener(this);
-        profilePic.setOnClickListener(this);
+        initializeView();
 
 
         drawerListener = new ActionBarDrawerToggle(this, drawerlayout, R.string.drawer_open, R.string.drawer_close) {
@@ -83,6 +79,42 @@ public class UserHomeActivity extends ActionBarActivity implements AdapterView.O
         fragmentManager = getFragmentManager();
 
         loadSelection(1);
+    }
+
+    private void initializeView() {
+
+
+        name=(TextView)findViewById(R.id.tvName);
+        email=(TextView)findViewById(R.id.tvEmail);
+        drawerlayout = (DrawerLayout) findViewById(R.id.drawerLayout);
+        drawerItemList = Arrays.asList(getResources().getStringArray(R.array.fragment_drawer_items));
+        listview = (ListView) findViewById(R.id.drawerList);
+        profilePic = (ImageView) findViewById(R.id.ivProfilePic);
+        listview.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
+        if (!(SharedPreferenceHandler.readValue(context,"LoginObject").isEmpty()))
+        {
+            LoginUser  loginUser = new Gson().fromJson(SharedPreferenceHandler.readValue(context,"LoginObject"), LoginUser.class);
+            name.setText(loginUser.getUser().getName());
+            email.setText(loginUser.getUser().getEmail());
+
+        }
+        else if (!(SharedPreferenceHandler.readValue(context,"RegisterObject").isEmpty()))
+        {
+            String registerObject=SharedPreferenceHandler.readValue(context, "RegisterObject");
+            Log.i("qwertyuio",SharedPreferenceHandler.readValue(context,"RegisterObject"));
+            RegisterUser  registerUser= new Gson().fromJson(registerObject, RegisterUser.class);
+            name.setText(registerUser.getUser().getName());
+            email.setText(registerUser.getUser().getEmail());
+
+        }
+
+
+
+        AdapterClass adapter = new AdapterClass();
+        listview.setAdapter(adapter);
+        listview.setOnItemClickListener(this);
+        profilePic.setOnClickListener(this);
+
     }
 
     private void loadSelection(int i) {

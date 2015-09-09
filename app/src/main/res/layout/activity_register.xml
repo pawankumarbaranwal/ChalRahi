@@ -36,7 +36,7 @@
             android:layout_marginTop="5dp"
             android:background="@drawable/rounded_corner"
             android:gravity="left|center"
-            android:hint="Email"
+            android:hint="@string/email"
             android:inputType="text"
             android:paddingLeft="10dp" />
 
@@ -136,6 +136,17 @@
             android:textSize="20sp"
             android:textStyle="bold"
             android:text="@string/sos_details" />
+
+        <ProgressBar
+            android:id="@+id/progress"
+            style="?android:attr/progressBarStyleSmall"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:indeterminate="true"
+            android:background="#ffff270f"
+            android:visibility="invisible" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

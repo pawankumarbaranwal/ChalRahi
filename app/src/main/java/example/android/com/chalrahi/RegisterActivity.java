@@ -47,6 +47,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     }
     private void initializeView()
     {
+        progressBar=(ProgressBar)findViewById(R.id.progress);
         login=(Button)findViewById(R.id.btnLoginLink);
         register=(Button)findViewById(R.id.btnRegister);
         name=(EditText)findViewById(R.id.etName);
@@ -111,7 +112,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                             registerUser = new Gson().fromJson(response, RegisterUser.class);
                             Log.i("ResponseType", registerUser.toString());
                         }
-                        SharedPreferenceHandler.writeValue(this, "RegisterObject", registerUser.toString());
+                        SharedPreferenceHandler.writeValue(this, "RegisterObject", response);
                         Log.i("RegisterObjectRead",SharedPreferenceHandler.readValue(this, "RegisterObject"));
 
                         intent=new Intent(this,UserHomeActivity.class);
