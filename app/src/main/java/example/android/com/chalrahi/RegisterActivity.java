@@ -20,9 +20,10 @@ import com.google.gson.reflect.TypeToken;
 
 import java.util.Map;
 
+import example.android.com.utils.OnTaskCompleted;
 import example.android.com.utils.SharedPreferenceHandler;
 
-public class RegisterActivity extends AppCompatActivity implements View.OnClickListener {
+public class RegisterActivity extends AppCompatActivity implements View.OnClickListener, OnTaskCompleted {
 
     private Button login;
     private ProgressBar progressBar;
@@ -65,8 +66,8 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     public void onClick(View v)
     {
         Intent intent;
-        OkHttpHandler handler = new OkHttpHandler(this,progressBar,"http://android-rahi.herokuapp.com/index.php");
-        RegisterUser registerUser=new RegisterUser();
+        OkHttpHandler handler = new OkHttpHandler(this,this,progressBar,"http://android-rahi.herokuapp.com/index.php");
+
         Validator validator =new Validator();
         if (v==login){
             intent=new Intent(this,LoginActivity.class);
@@ -87,8 +88,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                         dateOfBirth.getText().toString(),
                         password.getText().toString()
                         );
-
-                    response = handler.execute(
+                    handler.execute(
                             name.getText().toString(),
                             email.getText().toString(),
                             mobileNumber.getText().toString(),
@@ -98,33 +98,45 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                             relativePersonName.getText().toString(),
                             relativePersonContact.getText().toString(),
                             "register"
-                            ).get();
-                    if (response != null && response != "")
-                    {
-                        Gson gson = new GsonBuilder().create();
-                        Map<String, Object> mapObject = new Gson().fromJson(response, new TypeToken<Map<String, Object>>() {}.getType());
-                        if (mapObject.get("error").toString().equals("true"))
-                        {
-                            throw new Exception(mapObject.get("error_msg")+"");
-                        }else
-                        {
-                            registerUser = new Gson().fromJson(response, RegisterUser.class);
-                            Log.i("ResponseType", registerUser.toString());
-                        }
-                        SharedPreferenceHandler.writeValue(this, "RegisterObject", registerUser.toString());
-                        Log.i("RegisterObjectRead",SharedPreferenceHandler.readValue(this, "RegisterObject"));
-
-                        intent=new Intent(this,UserHomeActivity.class);
-                        startActivity(intent);
-                    }
-                    else if (response==null)
-                    {
-                        throw new Exception("Technical error");
-                    }
+                            );
+                    /**/
             } catch (Exception e) {
                 ShowError.displayError(this,e.getMessage());
                 //Toast.makeText(this,e.getMessage(),Toast.LENGTH_SHORT).show();
             }
+        }
+    }
+    @Override
+    public void onTaskCompleted(String response) {
+        Log.d("Response", response);
+        Intent intent;
+        RegisterUser registerUser=new RegisterUser();
+        try{
+            if (response != null && response != "")
+            {
+                Gson gson = new GsonBuilder().create();
+                Map<String, Object> mapObject = new Gson().fromJson(response, new TypeToken<Map<String, Object>>() {}.getType());
+                if (mapObject.get("error").toString().equals("true"))
+                {
+                    throw new Exception(mapObject.get("error_msg")+"");
+                }else
+                {
+                    registerUser = new Gson().fromJson(response, RegisterUser.class);
+                    Log.i("ResponseType", registerUser.toString());
+                }
+                SharedPreferenceHandler.writeValue(this, "RegisterObject", registerUser.toString());
+                Log.i("RegisterObjectRead",SharedPreferenceHandler.readValue(this, "RegisterObject"));
+
+                intent=new Intent(this,UserHomeActivity.class);
+                startActivity(intent);
+            }
+            else if (response==null)
+            {
+                throw new Exception("Technical error");
+            }
+        }catch (Exception e) {
+            ShowError.displayError(this,e.getMessage());
+            //Toast.makeText(this,e.getMessage(),Toast.LENGTH_SHORT).show();
         }
     }
 }

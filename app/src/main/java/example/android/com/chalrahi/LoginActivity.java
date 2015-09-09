@@ -12,14 +12,16 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import java.util.Map;
 
+import example.android.com.utils.OnTaskCompleted;
 import example.android.com.utils.SharedPreferenceHandler;
 
-public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
+public class LoginActivity extends AppCompatActivity implements View.OnClickListener, OnTaskCompleted {
 
     private Button login;
     private Button register;
@@ -27,36 +29,53 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private EditText password;
     private ProgressBar progressBar;
     String response;
+
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         initializeView();
     }
 
-    private void initializeView()
-    {
-        progressBar=(ProgressBar)findViewById(R.id.progress);
-        login=(Button)findViewById(R.id.btnLoginAsCustomer);
-        register=(Button)findViewById(R.id.btnRegisterLink);
-        mobileNumber=(EditText)findViewById(R.id.etPhone);
-        password=(EditText)findViewById(R.id.etPassword);
+    private void initializeView() {
+        progressBar = (ProgressBar) findViewById(R.id.progress);
+        login = (Button) findViewById(R.id.btnLoginAsCustomer);
+        register = (Button) findViewById(R.id.btnRegisterLink);
+        mobileNumber = (EditText) findViewById(R.id.etPhone);
+        password = (EditText) findViewById(R.id.etPassword);
         login.setOnClickListener(this);
         register.setOnClickListener(this);
     }
 
     @Override
-    public void onClick(View v)
-    {
-        OkHttpHandler handler = new OkHttpHandler(this,progressBar,"http://android-rahi.herokuapp.com/index.php");
-        Intent intent;
-        LoginUser loginUser =new LoginUser();
-        Validator validator =new Validator();
-        if (v==login) try {
+    public void onClick(View v) {
+        OkHttpHandler handler = new OkHttpHandler(this, this, progressBar, "http://android-rahi.herokuapp.com/index.php");
+
+        Validator validator = new Validator();
+        if (v == login) try {
             validator.validateLoginDetails(mobileNumber.getText().toString(), password.getText().toString());
-            response = handler.execute(mobileNumber.getText().toString(), password.getText().toString(), "login").get();
+            handler.execute(mobileNumber.getText().toString(), password.getText().toString(), "login");
+            //response =handler;
+            /**/
+        } catch (Exception e) {
+            e.printStackTrace();
+            ShowError.displayError(this, e.getMessage());
+
+        }
+        /*else if (v==register){
+            intent=new Intent(this,RegisterActivity.class);
+            startActivity(intent);
+        }*/
+    }
+
+    @Override
+    public void onTaskCompleted(String response) {
+        Log.d("Response", response);
+        LoginUser loginUser = new LoginUser();
+        Intent intent;
+        try {
             if (response != null && response != "") {
+
                 Map<String, Object> mapObject = new Gson().fromJson(response, new TypeToken<Map<String, Object>>() {
                 }.getType());
                 if (mapObject.get("error").toString().equals("true")) {
@@ -75,12 +94,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             }
         } catch (Exception e) {
             e.printStackTrace();
-           ShowError.displayError(this,e.getMessage());
-
-        }
-        else if (v==register){
-            intent=new Intent(this,RegisterActivity.class);
-            startActivity(intent);
+            ShowError.displayError(this, e.getMessage());
         }
     }
 }

@@ -12,12 +12,17 @@ import com.squareup.okhttp.Request;
 import com.squareup.okhttp.RequestBody;
 import com.squareup.okhttp.Response;
 
+import example.android.com.utils.OnTaskCompleted;
 
-public class OkHttpHandler extends AsyncTask<String, Void, String> {
+
+public class OkHttpHandler extends AsyncTask<String, Void, Boolean> {
     private Context context;
     private ProgressBar progressBar;
-    public OkHttpHandler(Context context, ProgressBar pBar, String url){
+    private String responseString;
+    private OnTaskCompleted onTaskCompletedResponse ;
+    public OkHttpHandler(OnTaskCompleted onTaskCompletedReturn,Context context, ProgressBar pBar, String url){
         this.context = context;
+        this.onTaskCompletedResponse = onTaskCompletedReturn;
         progressBar=pBar;
         REQUEST_URL =url;
         //spinner = new ProgressDialog(context); // spinner
@@ -35,8 +40,14 @@ public class OkHttpHandler extends AsyncTask<String, Void, String> {
        // progressBar = new ProgressBar(context,null,android.R.attr.progressBarStyleLarge);
         progressBar.setVisibility(View.VISIBLE);
     }*/
+      @Override
+      protected void onPreExecute() {
+          super.onPreExecute();
+          //progressBar = new ProgressBar(context, null, android.R.attr.progressBarStyleLarge);
+          progressBar.setVisibility(View.VISIBLE);
+      }
     @Override
-    protected String doInBackground(String... params) {
+    protected Boolean doInBackground(String... params) {
 
 
         String parameters ="";
@@ -61,25 +72,21 @@ public class OkHttpHandler extends AsyncTask<String, Void, String> {
         Request.Builder builder = new Request.Builder();
         builder.url(REQUEST_URL).post(reqBody);
         Request request = builder.build();
-
         try
         {
             Response response = httpClient.newCall(request).execute();
-            return response.body().string();
+            responseString = response.body().string();
+            return true;
         } catch (Exception e)
         {
-            return null;
+            return false;
         }
     }
 
     @Override
-    protected void onPreExecute() {
-        super.onPreExecute();
-        //progressBar = new ProgressBar(context, null, android.R.attr.progressBarStyleLarge);
-        progressBar.setVisibility(View.VISIBLE);
-    }
-    protected void onPostExecute(String s) {
+    protected void onPostExecute(Boolean s) {
         super.onPostExecute(s);
         progressBar.setVisibility(View.INVISIBLE);
+        this.onTaskCompletedResponse.onTaskCompleted(responseString);
     }
 }
