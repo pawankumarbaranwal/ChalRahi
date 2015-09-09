@@ -31,7 +31,7 @@ public class SplashScreenActivity extends Activity {
 
     // Set Duration of the Splash Screen
     private Context context=this;
-    long Delay = 3000;
+    long Delay = 100;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

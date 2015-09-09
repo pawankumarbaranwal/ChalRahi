@@ -65,7 +65,7 @@
                 android:padding="10dp"
                 android:gravity="center|left"
                 android:text="@string/click_on_red_box"
-                android:id="@+id/" />
+                 />
             </android.support.v7.widget.CardView>
         </LinearLayout>
 

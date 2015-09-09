@@ -22,6 +22,8 @@
     <string name="female">Female</string>
     <string name="male">Male</string>
     <string name="sign_out">Sign Out</string>
+    <string name="error">Error</string>
+    <string name="ok">OK</string>
 
 
     <string-array name="fragment_drawer_items">

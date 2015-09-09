@@ -122,7 +122,8 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                         throw new Exception("Technical error");
                     }
             } catch (Exception e) {
-                Toast.makeText(this,e.getMessage(),Toast.LENGTH_SHORT).show();
+                ShowError.displayError(this,e.getMessage());
+                //Toast.makeText(this,e.getMessage(),Toast.LENGTH_SHORT).show();
             }
         }
     }

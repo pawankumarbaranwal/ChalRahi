@@ -1,5 +1,6 @@
 package example.android.com.chalrahi;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -9,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -16,7 +18,6 @@ import com.google.gson.reflect.TypeToken;
 import java.util.Map;
 
 import example.android.com.utils.SharedPreferenceHandler;
-
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -52,38 +53,30 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         Intent intent;
         LoginUser loginUser =new LoginUser();
         Validator validator =new Validator();
-        if (v==login){
-            try
-            {
-                validator.validateLoginDetails(mobileNumber.getText().toString(), password.getText().toString());
-                    response = handler.execute(mobileNumber.getText().toString(),password.getText().toString(),"login").get();
-                    if (response != null && response != "")
-                    {
-                        Map<String, Object> mapObject = new Gson().fromJson(response, new TypeToken<Map<String, Object>>() {}.getType());
-                        if (mapObject.get("error").toString().equals("true"))
-                        {
-                            throw new Exception(mapObject.get("error_msg")+"");
-                        }else
-                        {
-                            loginUser = new Gson().fromJson(response, LoginUser.class);
-                            Log.i("ResponseType",loginUser.toString());
-                        }
-                        SharedPreferenceHandler.writeValue(this, "LoginObject", loginUser.toString());
-                        Log.i("asdfghjkl",SharedPreferenceHandler.readValue(this, "LoginObject"));
+        if (v==login) try {
+            validator.validateLoginDetails(mobileNumber.getText().toString(), password.getText().toString());
+            response = handler.execute(mobileNumber.getText().toString(), password.getText().toString(), "login").get();
+            if (response != null && response != "") {
+                Map<String, Object> mapObject = new Gson().fromJson(response, new TypeToken<Map<String, Object>>() {
+                }.getType());
+                if (mapObject.get("error").toString().equals("true")) {
+                    throw new Exception(mapObject.get("error_msg") + "");
+                } else {
+                    loginUser = new Gson().fromJson(response, LoginUser.class);
+                    Log.i("ResponseType", loginUser.toString());
+                }
+                SharedPreferenceHandler.writeValue(this, "LoginObject", loginUser.toString());
+                Log.i("asdfghjkl", SharedPreferenceHandler.readValue(this, "LoginObject"));
 
-                        intent=new Intent(this,UserHomeActivity.class);
-                        startActivity(intent);
-                    }
-                else if (response==null)
-                    {
-                        throw new Exception("Technical error");
-                    }
+                intent = new Intent(this, UserHomeActivity.class);
+                startActivity(intent);
+            } else if (response == null) {
+                throw new Exception("Technical error");
             }
-            catch (Exception e)
-            {
-                e.printStackTrace();
-                Toast.makeText(this,e.getMessage(),Toast.LENGTH_SHORT).show();
-            }
+        } catch (Exception e) {
+            e.printStackTrace();
+           ShowError.displayError(this,e.getMessage());
+
         }
         else if (v==register){
             intent=new Intent(this,RegisterActivity.class);
