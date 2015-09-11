@@ -1,5 +1,6 @@
 package example.android.com.chalrahi;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
@@ -17,13 +18,12 @@ import example.android.com.utils.OnTaskCompleted;
 
 public class OkHttpHandler extends AsyncTask<String, Void, Boolean> {
     private Context context;
-    private ProgressBar progressBar;
     private String responseString;
     private OnTaskCompleted onTaskCompletedResponse ;
-    public OkHttpHandler(OnTaskCompleted onTaskCompletedReturn,Context context, ProgressBar pBar, String url){
+    Dialog dialog;
+    public OkHttpHandler(OnTaskCompleted onTaskCompletedReturn,Context context, String url){
         this.context = context;
         this.onTaskCompletedResponse = onTaskCompletedReturn;
-        progressBar=pBar;
         REQUEST_URL =url;
         //spinner = new ProgressDialog(context); // spinner
     }
@@ -43,8 +43,8 @@ public class OkHttpHandler extends AsyncTask<String, Void, Boolean> {
       @Override
       protected void onPreExecute() {
           super.onPreExecute();
-          //progressBar = new ProgressBar(context, null, android.R.attr.progressBarStyleLarge);
-          progressBar.setVisibility(View.VISIBLE);
+
+          dialog=ShowError.displayProgressBar(context);
       }
     @Override
     protected Boolean doInBackground(String... params) {
@@ -86,7 +86,7 @@ public class OkHttpHandler extends AsyncTask<String, Void, Boolean> {
     @Override
     protected void onPostExecute(Boolean s) {
         super.onPostExecute(s);
-        progressBar.setVisibility(View.INVISIBLE);
+        dialog.hide();
         this.onTaskCompletedResponse.onTaskCompleted(responseString);
     }
 }

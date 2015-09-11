@@ -26,7 +26,6 @@ import example.android.com.utils.SharedPreferenceHandler;
 public class RegisterActivity extends AppCompatActivity implements View.OnClickListener, OnTaskCompleted {
 
     private Button login;
-    private ProgressBar progressBar;
     private Button register;
     private EditText name;
     private EditText email;
@@ -66,7 +65,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     public void onClick(View v)
     {
         Intent intent;
-        OkHttpHandler handler = new OkHttpHandler(this, this, progressBar,"http://android-rahi.herokuapp.com/index.php");
+        OkHttpHandler handler = new OkHttpHandler(this, this ,"http://android-rahi.herokuapp.com/index.php");
         Validator validator =new Validator();
         if (v==login){
             intent=new Intent(this,LoginActivity.class);
@@ -125,7 +124,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                     registerUser = new Gson().fromJson(response, RegisterUser.class);
                     Log.i("ResponseType", registerUser.toString());
                 }
-                SharedPreferenceHandler.writeValue(this, "RegisterObject", registerUser.toString());
+                SharedPreferenceHandler.writeValue(this, "RegisterObject", response);
                 Log.i("RegisterObjectRead",SharedPreferenceHandler.readValue(this, "RegisterObject"));
 
                 intent=new Intent(this,UserHomeActivity.class);

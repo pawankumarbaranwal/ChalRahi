@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,8 +28,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private Button register;
     private EditText mobileNumber;
     private EditText password;
-    private ProgressBar progressBar;
     String response;
+    RelativeLayout layout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +39,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }
 
     private void initializeView() {
-        progressBar = (ProgressBar) findViewById(R.id.progress);
         login = (Button) findViewById(R.id.btnLoginAsCustomer);
         register = (Button) findViewById(R.id.btnRegisterLink);
         mobileNumber = (EditText) findViewById(R.id.etPhone);
@@ -49,7 +49,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     @Override
     public void onClick(View v) {
-        OkHttpHandler handler = new OkHttpHandler(this, this, progressBar, "http://android-rahi.herokuapp.com/index.php");
+        Intent intent;
+        OkHttpHandler handler = new OkHttpHandler(this, this,"http://android-rahi.herokuapp.com/index.php");
 
         Validator validator = new Validator();
         if (v == login) try {
@@ -62,10 +63,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             ShowError.displayError(this, e.getMessage());
 
         }
-        /*else if (v==register){
+        else if (v==register){
             intent=new Intent(this,RegisterActivity.class);
             startActivity(intent);
-        }*/
+        }
     }
 
     @Override
