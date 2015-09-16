@@ -5,7 +5,11 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
+import android.view.KeyEvent;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -22,14 +26,14 @@ import java.util.Map;
 import example.android.com.utils.OnTaskCompleted;
 import example.android.com.utils.SharedPreferenceHandler;
 
-public class LoginActivity extends AppCompatActivity implements View.OnClickListener, OnTaskCompleted {
+public class LoginActivity extends AppCompatActivity implements View.OnClickListener, OnTaskCompleted, View.OnFocusChangeListener {
 
     private Button login;
     private Button register;
+    private Button clearMobileNumber;
+    private Button clearPassword;
     private EditText mobileNumber;
     private EditText password;
-    String response;
-    RelativeLayout layout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,21 +43,123 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }
 
     private void initializeView() {
+
         login = (Button) findViewById(R.id.btnLoginAsCustomer);
         register = (Button) findViewById(R.id.btnRegisterLink);
+        clearMobileNumber = (Button) findViewById(R.id.btnClearPhone);
+        clearPassword = (Button) findViewById(R.id.btnClearPassword);
         mobileNumber = (EditText) findViewById(R.id.etPhone);
         password = (EditText) findViewById(R.id.etPassword);
+
+        mobileNumber.setOnFocusChangeListener(this);
+        password.setOnFocusChangeListener(this);
+
         login.setOnClickListener(this);
         register.setOnClickListener(this);
+        clearMobileNumber.setOnClickListener(this);
+        clearPassword.setOnClickListener(this);
+
+     /*   mobileNumber.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus) {
+                    if (mobileNumber.getText().toString().length() != 0) {
+                        clearMobileNumber.setVisibility(View.VISIBLE);
+                    }
+                    clearPassword.setVisibility(View.INVISIBLE);
+                }
+            }
+        });
+
+        password.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus) {
+                    if (password.getText().toString().length() != 0) {
+                        clearPassword.setVisibility(View.VISIBLE);
+                    }
+                    clearMobileNumber.setVisibility(View.INVISIBLE);
+                }
+            }
+        });
+
+*/
+        mobileNumber.addTextChangedListener(new TextWatcher() {
+
+            public void afterTextChanged(Editable s) {
+            }
+
+            public void beforeTextChanged(CharSequence s, int start,
+                                          int count, int after) {
+            }
+
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (s.length() != 0) {
+                    clearMobileNumber.setVisibility(View.VISIBLE);
+                } else {
+                    clearMobileNumber.setVisibility(View.INVISIBLE);
+                }
+            }
+        });
+/*
+
+        password.setOnTouchListener(new View.OnTouchListener() {
+
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                Log.i("pppppppppp","11111111111111");
+                password.setFocusable(true);
+                clearMobileNumber.setVisibility(View.INVISIBLE);
+                return true; // return is important...
+            }
+        });
+*/
+
+       /* password.setOnKeyListener(new View.OnKeyListener() {
+
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event)
+            {
+                if(keyCode == 66) {
+                    clearMobileNumber.setVisibility(View.INVISIBLE);
+                }
+                return false;
+            }
+        });*/
+        password.addTextChangedListener(new TextWatcher() {
+
+            public void afterTextChanged(Editable s) {
+            }
+
+            public void beforeTextChanged(CharSequence s, int start,
+                                          int count, int after) {
+            }
+
+            public void onTextChanged(CharSequence s, int start,
+                                      int before, int count) {
+                clearMobileNumber.setVisibility(View.INVISIBLE);
+                if (s.length() != 0) {
+                    clearPassword.setVisibility(View.VISIBLE);
+                } else {
+                    clearPassword.setVisibility(View.INVISIBLE);
+                }
+            }
+        });
     }
 
     @Override
     public void onClick(View v) {
         Intent intent;
-        OkHttpHandler handler = new OkHttpHandler(this, this,"http://android-rahi.herokuapp.com/index.php");
+        OkHttpHandler handler = new OkHttpHandler(this, this, "http://android-rahi.herokuapp.com/index.php");
 
         Validator validator = new Validator();
-        if (v == login) try {
+        if (v == clearMobileNumber) {
+            mobileNumber.setText("");
+        } else if (v == password) {
+            clearMobileNumber.setVisibility(View.INVISIBLE);
+        } else if (v == clearPassword) {
+            password.setText("");
+        } else if (v == login) try {
             validator.validateLoginDetails(mobileNumber.getText().toString(), password.getText().toString());
             handler.execute(mobileNumber.getText().toString(), password.getText().toString(), "login");
             //response =handler;
@@ -63,8 +169,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             ShowError.displayError(this, e.getMessage());
 
         }
-        else if (v==register){
-            intent=new Intent(this,RegisterActivity.class);
+        else if (v == register) {
+            intent = new Intent(this, RegisterActivity.class);
             startActivity(intent);
         }
     }
@@ -96,6 +202,25 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         } catch (Exception e) {
             e.printStackTrace();
             ShowError.displayError(this, e.getMessage());
+        }
+    }
+
+    @Override
+    public void onFocusChange(View v, boolean hasFocus) {
+
+        if (hasFocus) {
+            if (v == mobileNumber) {
+                if (mobileNumber.getText().toString().length() != 0) {
+                    clearMobileNumber.setVisibility(View.VISIBLE);
+                }
+                clearPassword.setVisibility(View.INVISIBLE);
+            } else if (v == password) {
+                Log.i("xxxxxxxxxxx", "22222222222222");
+                if (password.getText().toString().length() != 0) {
+                    clearPassword.setVisibility(View.VISIBLE);
+                }
+                clearMobileNumber.setVisibility(View.INVISIBLE);
+            }
         }
     }
 }
