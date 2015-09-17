@@ -6,6 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import example.android.com.R;
+
 public class FairDetailsFragment extends Fragment{
 
 

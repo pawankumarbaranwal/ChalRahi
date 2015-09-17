@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import example.android.com.R;
 import example.android.com.utils.SharedPreferenceHandler;
 
 public class ProfileFragment extends Fragment implements View.OnClickListener

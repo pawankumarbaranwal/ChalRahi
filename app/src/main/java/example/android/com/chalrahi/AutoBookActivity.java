@@ -1,7 +1,11 @@
 package example.android.com.chalrahi;
 
 import android.app.Fragment;
+import android.app.PendingIntent;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.telephony.SmsManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +13,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;;import java.util.Calendar;
 import java.util.Date;
+
+import example.android.com.R;
 
 public class AutoBookActivity extends Fragment implements View.OnClickListener {
 
@@ -19,6 +25,7 @@ public class AutoBookActivity extends Fragment implements View.OnClickListener {
     static Long currentTime = 0L;
     static Long firstDifference = 0L;
     static Long secondDifference = 0L;
+    Context context = null;
 
 
 
@@ -43,6 +50,7 @@ public class AutoBookActivity extends Fragment implements View.OnClickListener {
         Calendar.getInstance().getTimeInMillis();
         if (v == bookAnAuto) {
             Toast.makeText(getActivity(), "Auto Booked"+l, Toast.LENGTH_SHORT).show();
+            sendSMSToAdmin();
         } else if (v == sendAnAlert) {
             if (count==1000)
             {
@@ -79,5 +87,19 @@ public class AutoBookActivity extends Fragment implements View.OnClickListener {
                 Toast.makeText(getActivity(), "Alert Sent", Toast.LENGTH_SHORT).show();
             }*/
         }
+    }
+    public void sendSMSToAdmin(){
+        PendingIntent piSent = PendingIntent.getBroadcast(this.getActivity().getBaseContext(), 0, new Intent("in.chalrahi.sent") , 0);
+
+        /** Creating a pending intent which will be broadcasted when an sms message is successfully delivered */
+        PendingIntent piDelivered = PendingIntent.getBroadcast(this.getActivity().getBaseContext(), 0, new Intent("in.chalrahi.delivered"), 0);
+
+        /** Getting an instance of SmsManager to sent sms message from the application*/
+        SmsManager smsManager = SmsManager.getDefault();
+
+        /** Sending the Sms message to the intended party */
+        //TODO Replace hard coded number with dynamic number of admin
+        smsManager.sendTextMessage("8792859626", null, "Please provide an auto at Koramangla", piSent, piDelivered);
+
     }
 }

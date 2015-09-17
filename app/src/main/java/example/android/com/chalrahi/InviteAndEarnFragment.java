@@ -9,6 +9,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import example.android.com.R;
+
 public class InviteAndEarnFragment extends Fragment implements View.OnClickListener
 {
 

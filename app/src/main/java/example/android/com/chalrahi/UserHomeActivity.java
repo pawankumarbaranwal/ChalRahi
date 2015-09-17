@@ -36,6 +36,7 @@ import java.io.File;
 import java.util.Arrays;
 import java.util.List;
 
+import example.android.com.R;
 import example.android.com.utils.SharedPreferenceHandler;
 
 public class UserHomeActivity extends ActionBarActivity implements AdapterView.OnItemClickListener, View.OnClickListener {

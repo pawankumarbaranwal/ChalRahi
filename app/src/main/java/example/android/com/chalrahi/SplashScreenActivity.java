@@ -16,6 +16,7 @@ import com.google.gson.reflect.TypeToken;
 
 import java.util.Map;
 
+import example.android.com.R;
 import example.android.com.utils.SharedPreferenceHandler;
 
 

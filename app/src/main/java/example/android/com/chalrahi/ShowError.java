@@ -9,6 +9,8 @@ import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import example.android.com.R;
+
 public class ShowError {
     public static void displayError(Context context, String message) {
         final Dialog dialog = new Dialog(context, R.style.PauseDialog);

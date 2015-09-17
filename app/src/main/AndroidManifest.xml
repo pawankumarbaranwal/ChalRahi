@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="example.android.com.chalrahi" >
+    package="example.android.com" >
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.SEND_SMS" />
 
     <application
         android:largeHeap="true"
@@ -13,7 +14,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name=".SplashScreenActivity"
+            android:name=".chalrahi.SplashScreenActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,17 +23,23 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".LoginActivity"
+            android:name=".chalrahi.LoginActivity"
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name=".RegisterActivity"
+            android:name=".chalrahi.RegisterActivity"
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name=".UserHomeActivity"
+            android:name=".chalrahi.UserHomeActivity"
             android:label="@string/app_name" >
         </activity>
+        <receiver android:name=".utils.SmsNotifications">
+            <intent-filter >
+                <action android:name="in.chalrahi.sent"/>
+                <action android:name="in.chalrahi.delivered"/>
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>
