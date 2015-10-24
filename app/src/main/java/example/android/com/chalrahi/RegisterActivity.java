@@ -112,6 +112,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         Log.d("Response Register", response);
         Intent intent;
         RegisterUser registerUser=new RegisterUser();
+        Toast.makeText(this,"Register Successful",Toast.LENGTH_LONG).show();
         try{
             if (response != null && response != "")
             {

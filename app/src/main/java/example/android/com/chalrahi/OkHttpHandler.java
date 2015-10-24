@@ -4,57 +4,43 @@ import android.app.Dialog;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
-import android.view.View;
-import android.widget.ProgressBar;
-
 import com.squareup.okhttp.MediaType;
-import com.squareup.okhttp.OkHttpClient;
-import com.squareup.okhttp.Request;
-import com.squareup.okhttp.RequestBody;
 import com.squareup.okhttp.Response;
-
+import example.android.com.utils.Http;
 import example.android.com.utils.OnTaskCompleted;
-
 
 public class OkHttpHandler extends AsyncTask<String, Void, Boolean> {
     private Context context;
     private String responseString;
+    private Http http = null;
     private OnTaskCompleted onTaskCompletedResponse ;
     Dialog dialog;
     public OkHttpHandler(OnTaskCompleted onTaskCompletedReturn,Context context, String url){
         this.context = context;
         this.onTaskCompletedResponse = onTaskCompletedReturn;
         REQUEST_URL =url;
-        //spinner = new ProgressDialog(context); // spinner
     }
-    // TODO: replace with your own image url
+    // TODO: get it from the string.xml
     private String REQUEST_URL;
-
-    OkHttpClient httpClient = new OkHttpClient();
 
     public static final MediaType JSON
             = MediaType.parse("application/x-www-form-urlencoded; charset=utf-8");
-  /*  @Override
-    protected void onPreExecute() {
-        super.onPreExecute();
-       // progressBar = new ProgressBar(context,null,android.R.attr.progressBarStyleLarge);
-        progressBar.setVisibility(View.VISIBLE);
-    }*/
+
       @Override
       protected void onPreExecute() {
           super.onPreExecute();
-
           dialog=ShowError.displayProgressBar(context);
       }
     @Override
     protected Boolean doInBackground(String... params) {
 
-
+        http = Http.instance();
         String parameters ="";
-        Log.i("qwertyuiop",params[0]+params[1]);
         if ((params[params.length-1]).equals("login"))
         {
-            parameters = "mobilenumber=" + params[0] + "&password=" + params[1] + "&tag="+params[2];
+            parameters = "mobilenumber=" + params[0] +
+                            "&password=" + params[1] +
+                            "&tag="+params[2];
         }else if ((params[params.length-1]).equals("register"))
         {
             parameters = "name="+params[0]+
@@ -67,16 +53,18 @@ public class OkHttpHandler extends AsyncTask<String, Void, Boolean> {
                     "&eContact="+params[7]+
                     "&tag="+params[8];
         }
-        Log.i("OkHttpHandler",parameters);
-        RequestBody reqBody = RequestBody.create(JSON,parameters);
-        Request.Builder builder = new Request.Builder();
-        builder.url(REQUEST_URL).post(reqBody);
-        Request request = builder.build();
+        Log.d("OkHttpHandler", parameters);
+        http.requestBody(JSON, parameters);
+        http.requestPOSTBuilder(REQUEST_URL);
         try
         {
-            Response response = httpClient.newCall(request).execute();
-            responseString = response.body().string();
-            return true;
+           Response response = http.responseExecute();
+            if(response != null &&  response.isSuccessful()) {
+                responseString = response.body().string();
+                return true;
+            }else{
+                return false;
+            }
         } catch (Exception e)
         {
             return false;

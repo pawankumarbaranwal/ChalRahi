@@ -179,6 +179,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     @Override
     public void onTaskCompleted(String response) {
         Log.d("Response", response);
+        Toast.makeText(this,"Login Successful",Toast.LENGTH_LONG).show();
         LoginUser loginUser = new LoginUser();
         Intent intent;
         try {
