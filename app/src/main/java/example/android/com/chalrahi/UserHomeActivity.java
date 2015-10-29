@@ -79,7 +79,7 @@ public class UserHomeActivity extends ActionBarActivity implements AdapterView.O
 
         fragmentManager = getFragmentManager();
 
-        loadSelection(1);
+        loadSelection(5);
     }
 
     private void initializeView() {
@@ -157,6 +157,13 @@ public class UserHomeActivity extends ActionBarActivity implements AdapterView.O
 
 
             case 5:
+                OffersFragment offersFragment = new OffersFragment();
+                fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.frameLayout, offersFragment);
+                fragmentTransaction.commit();
+                break;
+
+            case 6:
                 AboutUsFragment aboutUsFragment = new AboutUsFragment();
                 fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.replace(R.id.frameLayout, aboutUsFragment);

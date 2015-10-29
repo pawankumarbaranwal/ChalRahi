@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="ratinBarBackground">
+        <item name="android:progressTint">@android:color/holo_red_dark</item>
+        <item name="android:progressBackgroundTint">@android:color/holo_red_dark</item>
+        <item name="android:secondaryProgressTint">@android:color/holo_red_dark</item>
+    </style>
+</resources>

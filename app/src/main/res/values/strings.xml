@@ -34,6 +34,11 @@
     <string name="profile_date_of_birth">Date Of Birth</string>
     <string name="name_of_contact_person">Contact Person Name</string>
     <string name="phone_of_contact_person">Contact Person Phone</string>
+    <string name="free_rides">You are eligible for 1 Free ride after your every 5 rides with  Chal Rahi</string>
+    <string name="free_rides_till_now">Free Rides Availed Till Now</string>
+    <string name="refer_friend">Also, Share this app with your friend and both of you will get 1 Ride free when he download ChalRahi using your unique Rahi Number.</string>
+    <string name="free_rides_refer">Free Rides Available using this service</string>
+    <string name="free_rides_via_rides">Rides Status to Avail 1 Free Ride</string>
 
 
     <string-array name="fragment_drawer_items">
@@ -42,6 +47,7 @@
         <item>Invite and Earn</item>
         <item>Fare Detalis</item>
         <item>Support</item>
+        <item>Offers</item>
         <item>About Us</item>
     </string-array>
 </resources>
